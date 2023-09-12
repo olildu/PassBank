@@ -24,7 +24,7 @@ import requests
 
 response = requests.post("https://identitytoolkit.googleapis.com/v1/accounts:update?key=AIzaSyDO9WgyHMwZwu3n5O2kt55AQ8HcRMYZcGc", headers={"Content-Type": "application/json"}, json={
     "idToken": user['idToken'],
-    "photoUrl": "https://ui-avatars.com/api/?name=Ebin+Santhosh",
+    "photoUrl": "https://ui-avatars.com/api/?rounded=true&name=Ebin+Santhosh",
 })
 a = auth.get_account_info(id_token=user['idToken'])['users'][0]['displayName']
 

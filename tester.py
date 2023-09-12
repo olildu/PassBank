@@ -1,42 +1,47 @@
-import tkinter as tk
-from tkinter import ttk
-from PIL import Image, ImageTk, ImageFilter
+import customtkinter
 
-def apply_blur():
-    # Capture the content of the frame as an image
-    image = ImageGrab.grab(bbox=root.winfo_rootx(), root.winfo_rooty(), root.winfo_rootx() + frame.winfo_width(), root.winfo_rooty() + frame.winfo_height())
+root = customtkinter.CTk()
+root.geometry("1280x700")
 
-    # Apply a blur filter to the captured image
-    blurred_image = image.filter(ImageFilter.GaussianBlur(radius=10))
+animated_frame = customtkinter.CTkFrame(root, width=780, height=700, corner_radius=0, fg_color="#282D34")
+animated_frame.place(x=500, y=0)  # Start the frame outside the window on the right
 
-    # Convert the blurred image to PhotoImage format
-    blurred_photo = ImageTk.PhotoImage(blurred_image)
+main_frame = customtkinter.CTkFrame(animated_frame, width=600, height=600, corner_radius=0, fg_color="#282D34")
+main_frame.place(relx=0.5, rely=0.5, anchor="center")
 
-    # Display the blurred image in a label
-    blurred_label.config(image=blurred_photo)
-    blurred_label.image = blurred_photo
+frame1 = customtkinter.CTkFrame(main_frame, width=80, height=80, corner_radius=0)
+frame1.place(relx=0.5, rely=0.1, anchor="center")
 
-# Create the main window
-root = tk.Tk()
-root.geometry("400x300")
+title = customtkinter.CTkLabel(main_frame, text="F", font=customtkinter.CTkFont(family="Roboto", size=18))
+title.place(relx=0.5, rely=0.21, anchor="center")
 
-# Create a frame
-frame = ttk.Frame(root, width=400, height=300)
-frame.pack()
+details_frame = customtkinter.CTkFrame(main_frame, width=600, height=300, fg_color="#383C43")
+details_frame.place(relx=0.5, rely=0.6, anchor="center")
+details_frame.propagate(False)
 
-# Create a button to apply the blur effect
-blur_button = ttk.Button(root, text="Apply Blur", command=apply_blur)
-blur_button.pack()
+email_frame = customtkinter.CTkFrame(details_frame, width=600, height=100, corner_radius=0, fg_color="#383C43", bg_color="#383C43")
+email_frame.pack(pady=(10,0))
+email_frame.propagate(False)
 
-# Create a label to display the blurred image
-blurred_label = ttk.Label(root)
-blurred_label.pack()
+password_frame = customtkinter.CTkFrame(details_frame, width=600, height=100, corner_radius=0, fg_color="#383C43", bg_color="#383C43", border_color="#3E4249", border_width=2)
+password_frame.pack()
+password_frame.propagate(False)
 
-# Import the necessary modules for capturing screen content
-try:
-    from PIL import ImageGrab
-except ImportError:
-    import pyscreenshot as ImageGrab
 
-# Run the main loop
+website_frame = customtkinter.CTkFrame(details_frame, width=600, height=100, corner_radius=0, fg_color="#383C43", bg_color="#383C43")
+website_frame.pack(pady=(0,10))
+website_frame.propagate(False)
+
+email = customtkinter.CTkLabel(email_frame, text="Email or Username", font=customtkinter.CTkFont(family="Roboto", size=18))
+email.pack(anchor="w", pady=40, padx=20)
+
+e = customtkinter.CTkLabel(email_frame, text="RANDOMUSERNAME", font=customtkinter.CTkFont(family="Roboto", size=18))
+e.place(x=200, y=35)
+
+password = customtkinter.CTkLabel(password_frame, text="Password", font=customtkinter.CTkFont(family="Roboto", size=18))
+password.pack(anchor="w", pady=40, padx=20)
+
+website = customtkinter.CTkLabel(website_frame, text="Website", font=customtkinter.CTkFont(family="Roboto", size=18))
+website.pack(anchor="w", pady=30, padx=20)
+
 root.mainloop()

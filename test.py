@@ -1,45 +1,27 @@
-import tkinter as tk
-import color
+import re
 
-def fade(widget, smoothness=4, cnf={}, **kw):
-    """This function will show a faded effect on widget's different color options.
-    
-    Args:
-        widget (tk.Widget): Passed by the bind function.
-        smoothness (int): Set the smoothness of the fading (1-10).
-        background (str): Fade background color to.
-        foreground (str): Fade foreground color to."""
+def is_strong_password(password):
+    # Check password length
+    if len(password) < 8:
+        return False
 
-    kw = tk._cnfmerge((cnf, kw))
-    if not kw:
-        raise ValueError("No option given, -bg, -fg, etc")
-    if len(kw) > 1:
-        return [fade(widget, smoothness, {k: v}) for k, v in kw.items()][0]
-    if not getattr(widget, '_after_ids', None):
-        widget._after_ids = {}
-    widget.after_cancel(widget._after_ids.get(list(kw)[0], ' '))
-    c1 = tuple(map(lambda a: a / 65535, widget.winfo_rgb(widget[list(kw)[0]])))
-    c2 = tuple(map(lambda a: a / 65535, widget.winfo_rgb(list(kw.values())[0])))
-    colors = tuple(color.rgb2hex(c, force_long=True)
-                   for c in color.color_scale(c1, c2, max(1, smoothness * 100)))
+    if not re.search(r'[A-Z]', password):
+        return False
 
-    def worker(count=0):
-        if len(colors) - 1 <= count:
-            return
-        widget.config({list(kw)[0]: colors[count]})
-        widget._after_ids.update({list(kw)[0]: widget.after(
-            max(1, int(smoothness / 10)), worker, count + 1)})
+    if not re.search(r'[a-z]', password):
+        return False
 
-    worker()
+    if not re.search(r'[0-9]', password):
+        return False
 
-root = tk.Tk()
+    if not re.search(r'[!@#$%^&*(),.?":{}|<>]', password):
+        return False
 
-# Create a button to demonstrate the fading effect
-button = tk.Button(root, text="Fading Button")
-button.pack()
+    return True
 
-# Bind the fade function to the button with a color transition
-button.bind("<Enter>", lambda event: fade(event.widget, background="red"))
-button.bind("<Leave>", lambda event: fade(event.widget, background="white"))
+password = input("Enter a password: ")
 
-root.mainloop()
+if is_strong_password(password):
+    print("Strong password!")
+else:
+    print("Weak password. Please use a stronger password.")
