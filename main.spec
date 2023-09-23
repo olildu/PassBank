@@ -8,7 +8,7 @@ a = Analysis(
     ['main.py'],
     pathex=[],
     binaries=[],
-    datas=[('c:/users/ebin/desktop/code site/passbank/venv/lib/site-packages/customtkinter', 'customtkinter/')],
+    datas=[],
     hiddenimports=[],
     hookspath=[],
     hooksconfig={},
