@@ -877,9 +877,9 @@ def login(event, email, password):
                     w, h = root.winfo_width(), root.winfo_height()
                     screenshot = ImageGrab.grab(bbox=(x, y, x + w, y + h))
                     blurred_screenshot = screenshot.filter(ImageFilter.GaussianBlur(radius=2))
-                    blurred_screenshot.save("screenshot.png")
+                    blurred_screenshot.save(folder_path+r"\screenshot.png")
 
-                    button_image = customtkinter.CTkImage(Image.open("screenshot.png"), size=(1280, 700))
+                    button_image = customtkinter.CTkImage(Image.open(folder_path+r"\screenshot.png"), size=(1280, 700))
                     image_button = customtkinter.CTkLabel(master=root, text="",image=button_image)
                     image_button.place(relx=0.5, rely=0.5, anchor="center")
                     image_button.bind("<Button-1>", destroy_image)
@@ -1671,9 +1671,9 @@ def login(event, email, password):
                         w, h = root.winfo_width(), root.winfo_height()
                         screenshot = ImageGrab.grab(bbox=(x, y, x + w, y + h))
                         blurred_screenshot = screenshot.filter(ImageFilter.GaussianBlur(radius=2))
-                        blurred_screenshot.save("screenshot.png")
+                        blurred_screenshot.save(folder_path+r"\screenshot.png")
 
-                        button_image = customtkinter.CTkImage(Image.open("screenshot.png"), size=(1280, 700))
+                        button_image = customtkinter.CTkImage(Image.open(folder_path+r"\screenshot.png"), size=(1280, 700))
                         image_button = customtkinter.CTkLabel(master=root, text="",image=button_image)
                         image_button.place(relx=0.5, rely=0.5, anchor="center")
                         image_button.bind("<Button-1>", destroy_image)
@@ -2227,9 +2227,9 @@ def login(event, email, password):
                         w, h = root.winfo_width(), root.winfo_height()
                         screenshot = ImageGrab.grab(bbox=(x, y, x + w, y + h))
                         blurred_screenshot = screenshot.filter(ImageFilter.GaussianBlur(radius=2))
-                        blurred_screenshot.save("screenshot.png")
+                        blurred_screenshot.save(folder_path+r"\screenshot.png")
 
-                        button_image = customtkinter.CTkImage(Image.open("screenshot.png"), size=(1280, 700))
+                        button_image = customtkinter.CTkImage(Image.open(folder_path+r"\screenshot.png"), size=(1280, 700))
                         image_button = customtkinter.CTkLabel(master=root, text="",image=button_image)
                         image_button.place(relx=0.5, rely=0.5, anchor="center")
 
@@ -2864,7 +2864,7 @@ def login(event, email, password):
             if check:
                 pass
             else:
-                email_alerts_verified.place(x=22, y=186)
+                email_alerts_verified.place(x=58, y=290)
                 return
 
             password_entry.delete(0, 'end')
